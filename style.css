@@ -33,3 +33,13 @@ svg {
   width: 45px;
   fill: #fcf6f5;
 }
+
+.books-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  height: 50%;
+}
+
+.book {
+  border: 1px solid #990011;
+}

@@ -1,6 +1,7 @@
 let book = new Book("Can't Hurt Me", "David Goggins", 300, "read");
+let book2 = new Book("Can't Hurt Me", "David Goggins", 300, "read");
 
-const myLibrary = [book];
+const myLibrary = [book, book2];
 
 function Book(title, author, pages, haveRead) {
   this.title = title;
@@ -23,9 +24,14 @@ function addBookToLibrary() {
   myLibrary.push(book);
 }
 
+const bookContainer = document.querySelector(".books-container");
+
 function displayBooks() {
   myLibrary.forEach((book) => {
-    console.log(book.info());
+    const bookDiv = document.createElement("div");
+    bookDiv.innerText = book.info();
+    bookDiv.classList.add("book");
+    bookContainer.appendChild(bookDiv);
   });
 }
 displayBooks();

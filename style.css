@@ -39,14 +39,38 @@ svg {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   grid-template-rows: span 2;
+  gap: 32px;
+  margin: 32px;
 }
 
 .add-book-container {
   display: flex;
   justify-content: center;
   align-items: center;
+  margin: 12px;
 }
 
 .book {
-  border: 1px solid #990011;
+  background-color: white;
+  border-left: 16px solid #990011;
+  padding: 16px;
+  box-shadow: 0px 0px 25px grey;
+  width: 300px;
+  height: 300px;
+  border-radius: 2%;
+}
+
+dialog + button {
+  color: #fcf6f5;
+  background-color: #990011;
+  padding: 8px 32px;
+  border-radius: 10px;
+  font-weight: 1000;
+  font-size: 1rem;
+  border: none;
+}
+
+dialog + button:active {
+  position: relative;
+  top: 4px;
 }

@@ -1,4 +1,24 @@
-const myLibrary = [];
+let book = new Book("aa", "bb", 12, true);
+
+const myLibrary = [
+  book,
+  book,
+  book,
+  book,
+  book,
+  book,
+  book,
+  book,
+  book,
+  book,
+  book,
+  book,
+  book,
+  book,
+  book,
+  book,
+  book,
+];
 
 function Book(title, author, pages, haveRead) {
   this.title = title;
@@ -34,6 +54,13 @@ const dialog = document.querySelector("dialog");
 const addBookBtn = document.querySelector("dialog + button");
 const confirmBtn = document.querySelector("#confirm-btn");
 const cancelBtn = document.querySelector("#cancel-btn");
+const allFields = document.querySelectorAll("input");
+
+function clearInputFields() {
+  allFields.forEach((field) => {
+    field.value = "";
+  });
+}
 
 addBookBtn.addEventListener("click", () => {
   dialog.showModal();
@@ -47,9 +74,12 @@ confirmBtn.addEventListener("click", () => {
 
   let book = new Book(title.value, author.value, pages.value, read.value);
   addBookToLibrary(book);
+  clearInputFields();
   dialog.close();
 });
 
 cancelBtn.addEventListener("click", () => {
   dialog.close();
 });
+
+displayBooks();

@@ -1,7 +1,4 @@
-let book = new Book("Can't Hurt Me", "David Goggins", 300, "read");
-let book2 = new Book("Can't Hurt Me", "David Goggins", 300, "read");
-
-const myLibrary = [book, book2];
+const myLibrary = [];
 
 function Book(title, author, pages, haveRead) {
   this.title = title;
@@ -14,14 +11,12 @@ Book.prototype.info = function () {
   return `${this.title} by ${this.author}, ${this.pages}, ${this.haveRead}`;
 };
 
-function addBookToLibrary() {
-  let title = prompt("Enter a title");
-  let author = prompt("Enter author");
-  let pages = prompt("Enter amount of pages");
-  let haveRead = prompt("Read: Yes or No");
-
-  let book = new Book(title, author, pages, haveRead);
+function addBookToLibrary(book) {
   myLibrary.push(book);
+  const bookDiv = document.createElement("div");
+  bookDiv.innerText = book.info();
+  bookDiv.classList.add("book");
+  bookContainer.appendChild(bookDiv);
 }
 
 const bookContainer = document.querySelector(".books-container");
@@ -34,4 +29,27 @@ function displayBooks() {
     bookContainer.appendChild(bookDiv);
   });
 }
-displayBooks();
+
+const dialog = document.querySelector("dialog");
+const addBookBtn = document.querySelector("dialog + button");
+const confirmBtn = document.querySelector("#confirm-btn");
+const cancelBtn = document.querySelector("#cancel-btn");
+
+addBookBtn.addEventListener("click", () => {
+  dialog.showModal();
+});
+
+confirmBtn.addEventListener("click", () => {
+  const title = document.querySelector("#title");
+  const author = document.querySelector("#author");
+  const pages = document.querySelector("#pages");
+  const read = document.querySelector("#read");
+
+  let book = new Book(title.value, author.value, pages.value, read.value);
+  addBookToLibrary(book);
+  dialog.close();
+});
+
+cancelBtn.addEventListener("click", () => {
+  dialog.close();
+});

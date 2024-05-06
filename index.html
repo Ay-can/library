@@ -20,6 +20,31 @@
       </div>
     </div>
     <div class="add-book-container">
+      <dialog id="add-book-dialog">
+        <form action="">
+          <div>
+            <label for="title">Title: </label>
+            <input type="text" id="title" name="title" />
+          </div>
+
+          <div>
+            <label for="author">Author: </label>
+            <input type="text" id="author" name="author" />
+          </div>
+          <div>
+            <label for="pages">Pages: </label>
+            <input type="number" id="pages" name="pages" />
+          </div>
+          <div>
+            <label for="read">Read: </label>
+            <input type="checkbox" id="read" name="readstatus" checked />
+          </div>
+          <div>
+            <button type="button" id="confirm-btn">confirm</button>
+            <button type="button" id="cancel-btn">Cancel</button>
+          </div>
+        </form>
+      </dialog>
       <button type="button">Add Book</button>
     </div>
     <div class="books-container"></div>

@@ -34,6 +34,7 @@ Book.prototype.info = function () {
 function addBookToLibrary(book) {
   myLibrary.push(book);
   const bookDiv = document.createElement("div");
+
   bookDiv.innerText = book.info();
   bookDiv.classList.add("book");
   bookContainer.appendChild(bookDiv);
@@ -55,6 +56,7 @@ const addBookBtn = document.querySelector("dialog + button");
 const confirmBtn = document.querySelector("#confirm-btn");
 const cancelBtn = document.querySelector("#cancel-btn");
 const allFields = document.querySelectorAll("input");
+const form = document.querySelector("form");
 
 function clearInputFields() {
   allFields.forEach((field) => {
@@ -66,16 +68,20 @@ addBookBtn.addEventListener("click", () => {
   dialog.showModal();
 });
 
-confirmBtn.addEventListener("click", () => {
+confirmBtn.addEventListener("click", (e) => {
+  e.preventDefault();
+
   const title = document.querySelector("#title");
   const author = document.querySelector("#author");
   const pages = document.querySelector("#pages");
   const read = document.querySelector("#read");
 
-  let book = new Book(title.value, author.value, pages.value, read.value);
-  addBookToLibrary(book);
-  clearInputFields();
-  dialog.close();
+  if (form.reportValidity()) {
+    let book = new Book(title.value, author.value, pages.value, read.value);
+    addBookToLibrary(book);
+    clearInputFields();
+    dialog.close();
+  }
 });
 
 cancelBtn.addEventListener("click", () => {

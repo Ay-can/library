@@ -1,24 +1,4 @@
-let book = new Book("aa", "bb", 12, true);
-
-const myLibrary = [
-  book,
-  book,
-  book,
-  book,
-  book,
-  book,
-  book,
-  book,
-  book,
-  book,
-  book,
-  book,
-  book,
-  book,
-  book,
-  book,
-  book,
-];
+const myLibrary = [];
 
 function Book(title, author, pages, haveRead) {
   this.title = title;
@@ -33,21 +13,32 @@ Book.prototype.info = function () {
 
 function addBookToLibrary(book) {
   myLibrary.push(book);
-  const bookDiv = document.createElement("div");
-
-  bookDiv.innerText = book.info();
-  bookDiv.classList.add("book");
-  bookContainer.appendChild(bookDiv);
 }
 
 const bookContainer = document.querySelector(".books-container");
 
 function displayBooks() {
-  myLibrary.forEach((book) => {
+  myLibrary.forEach((book, index) => {
     const bookDiv = document.createElement("div");
+    const discardBtn = document.createElement("button");
+
+    // add click event to each button
+    addDiscardListener(discardBtn);
+
+    discardBtn.dataset.bookIndex = index;
+    discardBtn.innerText = "Discard";
+
     bookDiv.innerText = book.info();
+    bookDiv.appendChild(discardBtn);
     bookDiv.classList.add("book");
     bookContainer.appendChild(bookDiv);
+  });
+}
+
+function removeBooks() {
+  const books = document.querySelectorAll(".books-container > .book");
+  books.forEach((book) => {
+    bookContainer.removeChild(book);
   });
 }
 
@@ -78,7 +69,9 @@ confirmBtn.addEventListener("click", (e) => {
 
   if (form.reportValidity()) {
     let book = new Book(title.value, author.value, pages.value, read.value);
+    removeBooks();
     addBookToLibrary(book);
+    displayBooks();
     clearInputFields();
     dialog.close();
   }
@@ -88,4 +81,14 @@ cancelBtn.addEventListener("click", () => {
   dialog.close();
 });
 
-displayBooks();
+function addDiscardListener(discardBtn) {
+  // remove book library array
+  discardBtn.addEventListener("click", () => {
+    const currentBookElem = discardBtn.parentElement;
+    myLibrary.splice(currentBookElem.bookIndex, 1);
+
+    // remove old books from dom and repopulate with current library
+    removeBooks();
+    displayBooks();
+  });
+}

@@ -17,7 +17,8 @@ function addBookToLibrary(book) {
 
 const bookContainer = document.querySelector(".books-container");
 
-function displayBooks() {
+// populates DOM with library books
+function createBooks() {
   myLibrary.forEach((book, index) => {
     const bookDiv = document.createElement("div");
     const discardBtn = document.createElement("button");
@@ -25,7 +26,7 @@ function displayBooks() {
     // add click event to each button
     addDiscardListener(discardBtn);
 
-    discardBtn.dataset.bookIndex = index;
+    bookDiv.dataset.bookIndex = index;
     discardBtn.innerText = "Discard";
 
     bookDiv.innerText = book.info();
@@ -71,7 +72,7 @@ confirmBtn.addEventListener("click", (e) => {
     let book = new Book(title.value, author.value, pages.value, read.value);
     removeBooks();
     addBookToLibrary(book);
-    displayBooks();
+    createBooks();
     clearInputFields();
     dialog.close();
   }
@@ -85,10 +86,10 @@ function addDiscardListener(discardBtn) {
   // remove book library array
   discardBtn.addEventListener("click", () => {
     const currentBookElem = discardBtn.parentElement;
-    myLibrary.splice(currentBookElem.bookIndex, 1);
+    myLibrary.splice(currentBookElem.dataset.bookIndex, 1);
 
     // remove old books from dom and repopulate with current library
     removeBooks();
-    displayBooks();
+    createBooks();
   });
 }

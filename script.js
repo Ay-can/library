@@ -25,41 +25,53 @@ const bookContainer = document.querySelector(".books-container");
 function createBooks() {
   myLibrary.forEach((book, index) => {
     const bookDiv = document.createElement("div");
-    const discardBtn = document.createElement("button");
-    const checkbox = document.createElement("input");
-    const titleP = document.createElement("p");
-    const authorP = document.createElement("p");
-    const pagesP = document.createElement("p");
-    const readingStatusP = document.createElement("p");
+    const bookContent = document.createElement("div");
 
-    titleP.innerText = `Title: ${book.title}`;
-    authorP.innerText = `Author: ${book.author}`;
-    pagesP.innerText = `Pages: ${book.pages}`;
-    readingStatusP.innerText = `Status: ${book.status}`;
-
-    checkbox.type = "checkbox";
-    checkbox.checked = book.haveRead;
-    checkbox.addEventListener("click", () => {
-      console.log("checkbox toggled");
-      book.toggleReadStatus();
-    });
-
-    // add click event to each button
-    addDiscardListener(discardBtn);
+    // populate content div with fields
+    createBookContent(book, bookContent);
+    bookContent.classList.add("book-content");
 
     bookDiv.dataset.bookIndex = index;
-    discardBtn.innerText = "Discard";
 
-    //bookDiv.innerText = book.info();
-    bookDiv.appendChild(checkbox);
-    bookDiv.appendChild(discardBtn);
-    bookDiv.appendChild(titleP);
-    bookDiv.appendChild(authorP);
-    bookDiv.appendChild(pagesP);
-    bookDiv.appendChild(readingStatusP);
+    bookDiv.appendChild(bookContent);
     bookDiv.classList.add("book");
     bookContainer.appendChild(bookDiv);
   });
+}
+
+// populate div with book fields
+function createBookContent(book, bookContent) {
+  const titleP = document.createElement("p");
+  const authorP = document.createElement("p");
+  const pagesP = document.createElement("p");
+  const readingStatus = document.createElement("div");
+  const readingStatusP = document.createElement("span");
+  const checkbox = document.createElement("input");
+  const discardBtn = document.createElement("button");
+
+  addDiscardListener(discardBtn);
+
+  checkbox.type = "checkbox";
+  checkbox.checked = book.status;
+  checkbox.addEventListener("click", () => {
+    console.log("checkbox toggled");
+    book.toggleReadStatus();
+  });
+
+  titleP.innerText = `Title: ${book.title}`;
+  authorP.innerText = `Author: ${book.author}`;
+  pagesP.innerText = `Pages: ${book.pages}`;
+  discardBtn.innerText = "Discard";
+
+  readingStatusP.innerText = `Read: `;
+  readingStatus.appendChild(readingStatusP);
+  readingStatus.appendChild(checkbox);
+
+  bookContent.appendChild(titleP);
+  bookContent.appendChild(authorP);
+  bookContent.appendChild(pagesP);
+  bookContent.appendChild(readingStatus);
+  bookContent.appendChild(discardBtn);
 }
 
 function removeBooks() {

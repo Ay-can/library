@@ -11,6 +11,10 @@ Book.prototype.info = function () {
   return `${this.title} by ${this.author}, ${this.pages}, ${this.haveRead}`;
 };
 
+Book.prototype.toggleReadStatus = function () {
+  this.haveRead ? (this.haveRead = false) : (this.haveRead = true);
+};
+
 function addBookToLibrary(book) {
   myLibrary.push(book);
 }
@@ -22,6 +26,16 @@ function createBooks() {
   myLibrary.forEach((book, index) => {
     const bookDiv = document.createElement("div");
     const discardBtn = document.createElement("button");
+    const checkbox = document.createElement("input");
+
+    checkbox.type = "checkbox";
+    checkbox.checked = book.haveRead;
+
+    // convert "on" string to boolean for easy toggling
+    checkbox.addEventListener("click", () => {
+      console.log("checkbox toggled");
+      book.toggleReadStatus();
+    });
 
     // add click event to each button
     addDiscardListener(discardBtn);
@@ -29,7 +43,8 @@ function createBooks() {
     bookDiv.dataset.bookIndex = index;
     discardBtn.innerText = "Discard";
 
-    bookDiv.innerText = book.info();
+    //bookDiv.innerText = book.info();
+    bookDiv.appendChild(checkbox);
     bookDiv.appendChild(discardBtn);
     bookDiv.classList.add("book");
     bookContainer.appendChild(bookDiv);
@@ -66,10 +81,16 @@ confirmBtn.addEventListener("click", (e) => {
   const title = document.querySelector("#title");
   const author = document.querySelector("#author");
   const pages = document.querySelector("#pages");
-  const read = document.querySelector("#read");
+  const readCheckbox = document.querySelector("#read");
 
   if (form.reportValidity()) {
-    let book = new Book(title.value, author.value, pages.value, read.value);
+    let book = new Book(
+      title.value,
+      author.value,
+      pages.value,
+      readCheckbox.checked
+    );
+
     removeBooks();
     addBookToLibrary(book);
     createBooks();

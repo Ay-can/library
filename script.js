@@ -1,18 +1,18 @@
 const myLibrary = [];
 
-function Book(title, author, pages, haveRead) {
+function Book(title, author, pages, status) {
   this.title = title;
   this.author = author;
   this.pages = pages;
-  this.haveRead = haveRead;
+  this.status = status;
 }
 
 Book.prototype.info = function () {
-  return `${this.title} by ${this.author}, ${this.pages}, ${this.haveRead}`;
+  return `${this.title} by ${this.author}, ${this.pages}, ${this.status}`;
 };
 
 Book.prototype.toggleReadStatus = function () {
-  this.haveRead ? (this.haveRead = false) : (this.haveRead = true);
+  this.status ? (this.status = false) : (this.status = true);
 };
 
 function addBookToLibrary(book) {
@@ -27,6 +27,15 @@ function createBooks() {
     const bookDiv = document.createElement("div");
     const discardBtn = document.createElement("button");
     const checkbox = document.createElement("input");
+    const titleP = document.createElement("p");
+    const authorP = document.createElement("p");
+    const pagesP = document.createElement("p");
+    const readingStatusP = document.createElement("p");
+
+    titleP.innerText = `Title: ${book.title}`;
+    authorP.innerText = `Author: ${book.author}`;
+    pagesP.innerText = `Pages: ${book.pages}`;
+    readingStatusP.innerText = `Status: ${book.status}`;
 
     checkbox.type = "checkbox";
     checkbox.checked = book.haveRead;
@@ -44,6 +53,10 @@ function createBooks() {
     //bookDiv.innerText = book.info();
     bookDiv.appendChild(checkbox);
     bookDiv.appendChild(discardBtn);
+    bookDiv.appendChild(titleP);
+    bookDiv.appendChild(authorP);
+    bookDiv.appendChild(pagesP);
+    bookDiv.appendChild(readingStatusP);
     bookDiv.classList.add("book");
     bookContainer.appendChild(bookDiv);
   });

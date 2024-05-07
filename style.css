@@ -95,9 +95,13 @@ dialog + button:active {
 
 a:link,
 a:visited {
-  color: #fcf6f5;
+  color: #04af70;
 }
 
 a:hover {
-  opacity: 0.1;
+  opacity: 0.5;
+}
+
+button:hover {
+  opacity: 0.3;
 }

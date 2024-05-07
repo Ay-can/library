@@ -8,7 +8,7 @@ body {
     Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
 
   display: grid;
-  grid-template-rows: 10% 1fr 5fr;
+  grid-template-rows: 10% 1fr 5fr 10%;
 }
 
 .header {
@@ -37,7 +37,7 @@ svg {
 
 .books-container {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(330px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(500px, 1fr));
   grid-template-rows: span 2;
   gap: 32px;
   margin: 60px;
@@ -55,7 +55,7 @@ svg {
   border-left: 16px solid #990011;
   padding: 16px;
   box-shadow: 0px 0px 25px grey;
-  width: 300px;
+  width: 500px;
   height: 300px;
   border-radius: 2%;
 }
@@ -73,4 +73,31 @@ dialog + button {
 dialog + button:active {
   position: relative;
   top: 4px;
+}
+
+.footer {
+  background-color: #990011;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.footer > p {
+  color: #fcf6f5;
+  padding: 8px 16px;
+  font-size: 1.1rem;
+  font-weight: 900;
+}
+
+.footer a {
+  text-decoration: none;
+}
+
+a:link,
+a:visited {
+  color: #fcf6f5;
+}
+
+a:hover {
+  opacity: 0.1;
 }

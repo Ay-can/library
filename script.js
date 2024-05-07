@@ -30,8 +30,6 @@ function createBooks() {
 
     checkbox.type = "checkbox";
     checkbox.checked = book.haveRead;
-
-    // convert "on" string to boolean for easy toggling
     checkbox.addEventListener("click", () => {
       console.log("checkbox toggled");
       book.toggleReadStatus();

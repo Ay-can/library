@@ -26,13 +26,16 @@ function createBooks() {
   myLibrary.forEach((book, index) => {
     const bookDiv = document.createElement("div");
     const bookContent = document.createElement("div");
+    const bookCover = document.createElement("div");
+    bookCover.id = "book-cover";
 
     // populate content div with fields
     createBookContent(book, bookContent);
-    bookContent.classList.add("book-content");
+    bookContent.id = "book-content";
 
     bookDiv.dataset.bookIndex = index;
 
+    bookDiv.appendChild(bookCover);
     bookDiv.appendChild(bookContent);
     bookDiv.classList.add("book");
     bookContainer.appendChild(bookDiv);

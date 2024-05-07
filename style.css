@@ -58,6 +58,15 @@ svg {
   width: 500px;
   height: 300px;
   border-radius: 2%;
+
+  display: flex;
+  gap: 16px;
+}
+
+#book-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
 }
 
 dialog + button {
@@ -104,4 +113,9 @@ a:hover {
 
 button:hover {
   opacity: 0.3;
+}
+
+#book-cover {
+  content: url(img/epic.jpg);
+  width: 200px;
 }

@@ -1,6 +1,7 @@
 :root {
   --clr-main: #990011;
   --clr-second: #fcf6f5;
+  --clr-active: #04af70;
 }
 
 body {
@@ -120,7 +121,7 @@ button:active {
 
 a:link,
 a:visited {
-  color: #04af70;
+  color: var(--clr-active);
 }
 
 a:hover {
@@ -172,12 +173,27 @@ form {
 form > div {
   display: flex;
   flex-direction: column;
+  width: 100%;
 }
 
 form input {
   border-radius: 10px;
   padding: 4px;
+  border: 1px solid;
+  height: 20px;
   width: 100%;
+}
+
+form input:focus {
+  outline: none;
+  border: 2px solid var(--clr-active);
+}
+
+#read {
+  margin-top: 4px;
+  height: 13px;
+  width: 20%;
+  align-self: center;
 }
 
 .form-buttons {
@@ -188,7 +204,7 @@ form input {
 
 .read-status {
   flex-direction: row;
-  gap: 8px;
   align-items: center;
   justify-content: center;
+  justify-content: flex-start;
 }

@@ -1,3 +1,8 @@
+:root {
+  --clr-main: #990011;
+  --clr-second: #fcf6f5;
+}
+
 body {
   box-sizing: border-box;
   padding: 0;
@@ -12,7 +17,7 @@ body {
 }
 
 .header {
-  background-color: #990011;
+  background-color: var(--clr-main);
 }
 
 #logo {
@@ -24,7 +29,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  color: #fcf6f5;
+  color: var(--clr-second);
   font-size: 1.2rem;
   gap: 6px;
 }
@@ -32,7 +37,7 @@ body {
 svg {
   align-self: center;
   width: 45px;
-  fill: #fcf6f5;
+  fill: var(--clr-second);
 }
 
 .books-container {
@@ -52,7 +57,7 @@ svg {
 
 .book {
   background-color: white;
-  border-left: 16px solid #990011;
+  border-left: 16px solid var(--clr-main);
   padding: 16px;
   box-shadow: 0px 0px 25px grey;
   width: 500px;
@@ -78,13 +83,13 @@ svg {
   margin: 0;
   padding: 0;
   height: fit-content;
-  font-size: 1rem;
+  font-size: 1.1rem;
 }
 
 dialog + button,
 #book-content > button {
-  color: #fcf6f5;
-  background-color: #990011;
+  color: var(--clr-second);
+  background-color: var(--clr-main);
   padding: 8px 32px;
   border-radius: 10px;
   font-weight: 1000;
@@ -92,13 +97,14 @@ dialog + button,
   border: none;
 }
 
-dialog + button:active {
+dialog + button:active,
+#book-content > button:active {
   position: relative;
   top: 4px;
 }
 
 .footer {
-  background-color: #990011;
+  background-color: var(--clr-main);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -131,4 +137,8 @@ button:hover {
 #book-cover {
   content: url(img/epic.jpg);
   width: 200px;
+}
+
+input[type="checkbox"] {
+  accent-color: var(--clr-main);
 }

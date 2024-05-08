@@ -34,7 +34,6 @@ function createBooks() {
     bookContent.id = "book-content";
 
     bookDiv.dataset.bookIndex = index;
-    console.log(bookDiv);
 
     bookDiv.appendChild(bookCover);
     bookDiv.appendChild(bookContent);

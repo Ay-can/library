@@ -34,6 +34,7 @@ function createBooks() {
     bookContent.id = "book-content";
 
     bookDiv.dataset.bookIndex = index;
+    console.log(bookDiv);
 
     bookDiv.appendChild(bookCover);
     bookDiv.appendChild(bookContent);
@@ -58,10 +59,14 @@ function createBookContent(book, bookContent) {
 
   titleP.innerText = `${book.title}`;
   authorP.innerText = `By ${book.author}`;
-  pagesP.innerText = `${book.pages} pages`;
+  pagesP.innerText =
+    book.pages === "" ? "Unknown Pages" : `${book.pages} Pages`;
+
   discardBtn.innerText = "Discard";
   readingStatusP.innerText = `Read `;
   readingStatusDiv.classList.add("reading-status");
+
+  titleP.classList.add("bold-label");
 
   readingStatusDiv.appendChild(readingStatusP);
   readingStatusDiv.appendChild(checkbox);
@@ -128,7 +133,7 @@ cancelBtn.addEventListener("click", () => {
 function addDiscardListener(discardBtn) {
   // remove book library array
   discardBtn.addEventListener("click", () => {
-    const currentBookElem = discardBtn.parentElement;
+    const currentBookElem = discardBtn.parentElement.parentElement;
     myLibrary.splice(currentBookElem.dataset.bookIndex, 1);
 
     // remove old books from dom and repopulate with current library
@@ -141,7 +146,6 @@ function addCheckboxListener(book, checkbox) {
   checkbox.type = "checkbox";
   checkbox.checked = book.status;
   checkbox.addEventListener("click", () => {
-    console.log("checkbox toggled");
     book.toggleReadStatus();
   });
 }

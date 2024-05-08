@@ -65,7 +65,6 @@ svg {
   border-radius: 2%;
 
   display: flex;
-  flex: 1;
   gap: 32px;
 }
 
@@ -153,4 +152,8 @@ input[type="checkbox"] {
   display: flex;
   align-items: center;
   gap: 8px;
+}
+
+.bold-label {
+  font-weight: 900;
 }

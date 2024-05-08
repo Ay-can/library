@@ -60,16 +60,29 @@ svg {
   border-radius: 2%;
 
   display: flex;
-  gap: 16px;
+  flex: 1;
+  gap: 32px;
 }
 
 #book-content {
+  margin-top: 16px;
   flex: 1;
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-rows: 10% 10% 10% 10% 10%;
+  grid-auto-flow: row;
+  row-gap: 8px;
 }
 
-dialog + button {
+#book-content > p,
+#book-content span {
+  margin: 0;
+  padding: 0;
+  height: fit-content;
+  font-size: 1rem;
+}
+
+dialog + button,
+#book-content > button {
   color: #fcf6f5;
   background-color: #990011;
   padding: 8px 32px;

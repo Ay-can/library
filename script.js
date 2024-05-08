@@ -43,37 +43,33 @@ function createBooks() {
 }
 
 // populate div with book fields
+// I hope react has a better way to do this.
 function createBookContent(book, bookContent) {
   const titleP = document.createElement("p");
   const authorP = document.createElement("p");
   const pagesP = document.createElement("p");
-  const readingStatus = document.createElement("div");
+  const readingStatusDiv = document.createElement("div");
   const readingStatusP = document.createElement("span");
   const checkbox = document.createElement("input");
   const discardBtn = document.createElement("button");
 
   addDiscardListener(discardBtn);
+  addCheckboxListener(book, checkbox);
 
-  checkbox.type = "checkbox";
-  checkbox.checked = book.status;
-  checkbox.addEventListener("click", () => {
-    console.log("checkbox toggled");
-    book.toggleReadStatus();
-  });
-
-  titleP.innerText = `Title: ${book.title}`;
-  authorP.innerText = `Author: ${book.author}`;
-  pagesP.innerText = `Pages: ${book.pages}`;
+  titleP.innerText = `${book.title}`;
+  authorP.innerText = `By ${book.author}`;
+  pagesP.innerText = `${book.pages} pages`;
   discardBtn.innerText = "Discard";
+  readingStatusP.innerText = `Read `;
+  readingStatusDiv.classList.add("reading-status");
 
-  readingStatusP.innerText = `Read: `;
-  readingStatus.appendChild(readingStatusP);
-  readingStatus.appendChild(checkbox);
+  readingStatusDiv.appendChild(readingStatusP);
+  readingStatusDiv.appendChild(checkbox);
 
   bookContent.appendChild(titleP);
   bookContent.appendChild(authorP);
   bookContent.appendChild(pagesP);
-  bookContent.appendChild(readingStatus);
+  bookContent.appendChild(readingStatusDiv);
   bookContent.appendChild(discardBtn);
 }
 
@@ -138,5 +134,14 @@ function addDiscardListener(discardBtn) {
     // remove old books from dom and repopulate with current library
     removeBooks();
     createBooks();
+  });
+}
+
+function addCheckboxListener(book, checkbox) {
+  checkbox.type = "checkbox";
+  checkbox.checked = book.status;
+  checkbox.addEventListener("click", () => {
+    console.log("checkbox toggled");
+    book.toggleReadStatus();
   });
 }

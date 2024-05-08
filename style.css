@@ -142,3 +142,15 @@ button:hover {
 input[type="checkbox"] {
   accent-color: var(--clr-main);
 }
+
+#book-content input[type="checkbox"] {
+  height: 13px;
+  width: 13px;
+  align-self: center;
+}
+
+.reading-status {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}

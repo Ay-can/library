@@ -1,26 +1,32 @@
-const myLibrary = [];
+class Book {
+  title;
+  author;
+  pages;
+  status;
 
-function Book(title, author, pages, status) {
-  this.title = title;
-  this.author = author;
-  this.pages = pages;
-  this.status = status;
+  constructor(title, author, pages, status) {
+    this.title = title;
+    this.author = author;
+    this.pages = pages;
+    this.status = status;
+  }
+
+  info() {
+    return `${this.title} by ${this.author}, ${this.pages}, ${this.status}`;
+  }
+
+  toggleReadStatus() {
+    this.status ? (this.status = false) : (this.status = true);
+  }
 }
 
-Book.prototype.info = function () {
-  return `${this.title} by ${this.author}, ${this.pages}, ${this.status}`;
-};
+const myLibrary = [];
 
-Book.prototype.toggleReadStatus = function () {
-  this.status ? (this.status = false) : (this.status = true);
-};
+const bookContainer = document.querySelector(".books-container");
 
 function addBookToLibrary(book) {
   myLibrary.push(book);
 }
-
-const bookContainer = document.querySelector(".books-container");
-
 // populates DOM with library books
 function createBooks() {
   myLibrary.forEach((book, index) => {
